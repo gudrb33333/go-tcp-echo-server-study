@@ -13,7 +13,7 @@ type NetworkConfig struct {
 	MaxReceiveBufferSize int    //받은 버퍼 크기. 최소 MaxPacketSize 두배 이상.
 }
 
-func (config NetworkConfig) WriteNetworkConfig(isClientSide bool) {
+func (config NetworkConfig) LogNetworkConfig(isClientSide bool) {
 	LogInfo("", 0, fmt.Sprintf("config - isClientSide: %t", isClientSide))
 	LogInfo("", 0, fmt.Sprintf("config - IsTcp4Addr: %t", config.IsTcp4Addr))
 	LogInfo("", 0, fmt.Sprintf("config - ClientAddress: %s", config.BindAddress))

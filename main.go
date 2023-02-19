@@ -10,7 +10,7 @@ func main() {
 	InitLog(LOG_LEVEL_DEBUG, nil)
 
 	netConfigClient := parseAppConfig()
-	netConfigClient.WriteNetworkConfig(true)
+	netConfigClient.LogNetworkConfig(true)
 
 	// 아래 함수를 호출하면 강제적으로 종료 시킬 때까지 대기 상태가 된다.
 	createServer(netConfigClient)
