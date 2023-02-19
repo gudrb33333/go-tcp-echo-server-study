@@ -19,12 +19,12 @@ type TCPServer struct {
 }
 
 func createServer(netConfig NetworkConfig) {
-	OutPutLog(LOG_LEVEL_INFO, "", 0, "CreateServer !!!")
+	LogInfo("", 0, "CreateServer !!!")
 
 	var server TCPServer
 
 	if server.setIPAddress(netConfig.BindAddress) == false {
-		OutPutLog(LOG_LEVEL_ERROR, "", 0, "fail. server address")
+		LogError("", 0, "fail. server address")
 		return
 	}
 
@@ -57,13 +57,13 @@ func (server *TCPServer) setIPAddress(ipAddress string) bool {
 }
 
 func (server *TCPServer) OnConnect(sessionIndex int32, sessionUniqueID uint64) {
-	OutPutLog(LOG_LEVEL_INFO, "", 0, fmt.Sprintf("[OnConnect] sessionIndex: %d", sessionIndex))
-	OutPutLog(LOG_LEVEL_INFO, "", 0, fmt.Sprintf("[OnConnect] sessionUniqueID: %d", sessionUniqueID))
+	LogInfo("", 0, fmt.Sprintf("[OnConnect] sessionIndex: %d", sessionIndex))
+	LogInfo("", 0, fmt.Sprintf("[OnConnect] sessionUniqueID: %d", sessionUniqueID))
 }
 
 func (server *TCPServer) OnReceive(sessionIndex int32, sessionUniqueID uint64, data []byte) bool {
 	sendToClient(sessionIndex, sessionUniqueID, data)
-	OutPutLog(LOG_LEVEL_INFO, "", 0, fmt.Sprintf("[OnReceive] message %s", data))
+	LogInfo("", 0, fmt.Sprintf("[OnReceive] message %s", data))
 	return true
 }
 
@@ -73,8 +73,8 @@ func sendToClient(sessionIndex int32, sessionUniqueID uint64, data []byte) bool 
 }
 
 func (server *TCPServer) OnClose(sessionIndex int32, sessionUniqueID uint64) {
-	OutPutLog(LOG_LEVEL_INFO, "", 0, fmt.Sprintf("[OnClose] sessionIndex: %d", sessionIndex))
-	OutPutLog(LOG_LEVEL_INFO, "", 0, fmt.Sprintf("[OnClose] sessionUniqueID: %d", sessionUniqueID))
+	LogInfo("", 0, fmt.Sprintf("[OnConnect] sessionIndex: %d", sessionIndex))
+	LogInfo("", 0, fmt.Sprintf("[OnConnect] sessionUniqueID: %d", sessionUniqueID))
 }
 
 func startTcpserverBlock(config *NetworkConfig, networkFunctor SessionNetworkFunctors) {
